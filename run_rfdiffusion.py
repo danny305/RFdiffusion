@@ -8,10 +8,13 @@ import numpy as np
 from colabdesign.rf.utils import fix_contigs, fix_partial_contigs, fix_pdb, sym_it
 from colabdesign.shared.protein import pdb_to_string
 
-
-from inference.utils import parse_pdb
-
 CWD = Path(__file__).parent
+
+sys.path.append(CWD.resolve())
+
+print(f"Set working directory: {CWD}")
+
+from rfdiffusion.inference.utils import parse_pdb
 
 
 def get_pdb(pdb_code):
@@ -304,7 +307,7 @@ def run_diffusion(
     print("contigs:", contigs)
 
     opts_str = " ".join(opts)
-    cmd = f"./run_inference.py {opts_str}"
+    cmd = f"./scripts/run_inference.py {opts_str}"
     print(cmd)
 
     # RUN
